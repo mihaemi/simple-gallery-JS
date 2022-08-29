@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #123;
+        }
+        #gallery {
+            width: 600px;
+            /* border:  1px solid white; */
+            margin: 50px auto;
+            text-align: center;
+            display: inline-block;
+
+        }
+        #gallery .thumb {
+            width: 100px;
+            border: 1px solid transparent;
+            cursor: pointer;
+        }
+        #gallery .thumb.active {
+            border-color: white;
+        }
+        #btnPrev, #btnNext {
+            display: inline-block;
+            vertical-align: 250px;
+            font-size: 30px;
+            padding: 5px;
+            background-color: #125;
+            color: white;
+            cursor: pointer;
+        }
+       
+    </style>
+</head> 
+<body>
+    <div id="gallery">
+
+        <button id="btnPrev" onclick="prev()">◄</button>
+        <img src="1.jpg" id="mainImage">
+        <button id="btnNext" onclick="next()">►</button>
+        <hr>
+        <img id="thumb1" onclick="selectImage(1)" src="1.jpg" class="thumb active">
+        <img id="thumb2" onclick="selectImage(2)" src="2.jpg" class="thumb">
+        <img id="thumb3" onclick="selectImage(3)" src="3.jpg" class="thumb">
+        <img id="thumb4" onclick="selectImage(4)" src="4.jpg" class="thumb">
+        <img id="thumb5" onclick="selectImage(5)" src="5.jpg" class="thumb">
+
+    </div>
+
+    <script>
+        let selectedImage = 1
+
+        function selectImage(n) {
+            //change main image
+            mainImage.src = `${n}.jpg`
+
+            for (let i=1; i <=5; i++) {
+                if (i == n) {
+                    //set active class to thumb
+                    window[`thumb${i}`].className = 'thumb active'
+                } else {
+                    window[`thumb${i}`].className = 'thumb'
+
+                }
+            }
+            
+        }
+        function next() {
+            selectedImage++
+            if (selectedImage <=5) {
+            selectImage(selectedImage)
+            } else {
+                selectImage(1)
+            }
+        }
+
+        function prev() {
+            selectedImage--
+            if (selectedImage <=5) {
+                selectImage(5)
+            } else {
+                selectImage(selectedImage)
+            }
+
+            
+        }
+        // -add 2 arrows (button) prev, next
+        // - add a function to each arrow
+        // functions should activate next, prev image
+        // hint: incrementing, decrementing the global var selectedImage
+    </script>
+
+
+    
+</body>
+</html>
